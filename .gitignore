@@ -11,8 +11,6 @@ node_modules
 build
 *.local
 
-.env
-
 # Editor directories and files
 .idea
 .DS_Store
