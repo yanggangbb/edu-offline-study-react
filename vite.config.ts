@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import path from 'path';
 import { readdirSync } from 'fs';
 
@@ -11,6 +11,8 @@ const srcRootContent = readdirSync(srcPath, { withFileTypes: true }).map((dirent
 srcRootContent.forEach((directory) => {
   absolutePathAliases[directory] = path.join(srcPath, directory);
 });
+
+const env = loadEnv('all', process.cwd());
 
 export default defineConfig({
   plugins: [react()],
@@ -27,7 +29,7 @@ export default defineConfig({
     },
     proxy: {
       '/api': {
-        target: import.meta.env['VITE_API_URL'],
+        target: env['VITE_API_URL'],
         changeOrigin: true,
         secure: false,
         ws: true,
