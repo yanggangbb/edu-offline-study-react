@@ -1,19 +1,43 @@
 import loadable from '@loadable/component';
-import { Route, Routes } from 'react-router-dom';
-import AuthLayout from 'layouts/AuthLayout';
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+  redirect,
+} from 'react-router-dom';
+
+import Provider from 'provider';
+
+const AuthLayout = loadable(() => import('layouts/AuthLayout'));
+const MainLayout = loadable(() => import('layouts/MainLayout'));
 
 const IndexPage = loadable(() => import('pages/index'));
 
-const App = () => {
-  return (
-    <Routes>
-      <Route path='/' element={<IndexPage />} />
-      <Route element={<AuthLayout />}>
-        <Route path='/post' element={<></>} />
-        <Route path='/post/create' element={<></>} />
-      </Route>
-    </Routes>
-  );
-};
+const App = () => (
+  <RouterProvider
+    router={createBrowserRouter(
+      createRoutesFromElements(
+        <Route element={<Provider />}>
+          <Route element={<MainLayout />} loader={MainLayout.load}>
+            <Route path='/' element={<IndexPage />} loader={IndexPage.load} />
+            <Route path='/join' element={<>회원가입화면</>} />
+          </Route>
+          ,
+          <Route
+            element={<AuthLayout />}
+            loader={() => {
+              if (!document.cookie.includes('access_token')) return redirect('/');
+              return AuthLayout.load();
+            }}
+          >
+            <Route path='/home' element={<>홈화면</>} />
+            <Route path='/post' element={<>게시글화면</>} />
+          </Route>
+        </Route>,
+      ),
+    )}
+  />
+);
 
 export default App;

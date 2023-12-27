@@ -1,7 +1,13 @@
-import { ThemeProvider, createTheme } from '@mui/material';
-import { PropsWithChildren, useState } from 'react';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { PropsWithChildren, forwardRef, useState } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter, useNavigate } from 'react-router-dom';
+import {
+  Outlet,
+  useNavigate,
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+} from 'react-router-dom';
+import { LinkProps } from '@mui/material/Link';
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
@@ -31,16 +37,61 @@ const TanstackProvider = ({ children }: PropsWithChildren) => {
   return <QueryClientProvider client={client}>{children}</QueryClientProvider>;
 };
 
-const Provider = ({ children }: PropsWithChildren) => {
-  const [theme] = useState(createTheme());
+const LinkBehavior = forwardRef<
+  HTMLAnchorElement,
+  Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
+>((props, ref) => {
+  const { href, ...other } = props;
+  return <RouterLink ref={ref} to={href} {...other} />;
+});
+
+LinkBehavior.displayName = 'LinkBehavior';
+
+const Provider = () => {
+  const [theme] = useState(
+    createTheme({
+      palette: {
+        primary: {
+          main: '#007fff',
+        },
+      },
+      components: {
+        MuiCssBaseline: {
+          styleOverrides: {
+            a: {
+              width: 'fit-content',
+              textDecoration: 'none',
+              color: 'inherit',
+            },
+            button: {
+              width: 'fit-content',
+            },
+            html: {
+              fontSize: '16px',
+              minWidth: '320px',
+            },
+          },
+        },
+        MuiLink: {
+          defaultProps: {
+            component: LinkBehavior,
+          } as LinkProps,
+        },
+        MuiButtonBase: {
+          defaultProps: {
+            LinkComponent: LinkBehavior,
+          },
+        },
+      },
+    }),
+  );
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <TanstackProvider>
-          <HelmetProvider>{children}</HelmetProvider>
-        </TanstackProvider>
-      </ThemeProvider>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <TanstackProvider>
+        <HelmetProvider>{<Outlet />}</HelmetProvider>
+      </TanstackProvider>
+    </ThemeProvider>
   );
 };
 

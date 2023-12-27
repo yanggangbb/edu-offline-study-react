@@ -1,4 +1,4 @@
-import { Button, Stack, TextField } from '@mui/material';
+import { Button, Paper, Stack, TextField, Typography } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import { useLayoutEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -17,7 +17,7 @@ const IndexPage = () => {
     mutationFn: (formData: LoginForm) => client.post('/auth/login', formData),
     mutationKey: ['login'],
     onSuccess: () => {
-      navigate('/post');
+      navigate('/home');
     },
   });
   const { handleSubmit, register } = useForm<LoginForm>();
@@ -28,19 +28,28 @@ const IndexPage = () => {
 
   useLayoutEffect(() => {
     if (document.cookie.includes('access_token')) {
-      navigate('/post');
+      navigate('/home');
     }
   }, []);
 
   return (
     <>
       <Helmet>
-        <title>Login</title>
+        <title>로그인 페이지</title>
       </Helmet>
-      <Stack component='form' spacing={1} maxWidth={540} onSubmit={handleLoginSubmit}>
-        <TextField type='email' {...register('username')} />
-        <TextField type='password' {...register('password')} />
-        <Button type='submit'>로그인</Button>
+      <Stack flex='1' alignItems='center' justifyContent='center' px={2}>
+        <Paper sx={{ maxWidth: 380, width: '100%' }} variant='outlined'>
+          <Stack component='form' spacing={3} pt={6} pb={3} px={3} onSubmit={handleLoginSubmit}>
+            <Typography textAlign='center' variant='h4'>
+              로그인
+            </Typography>
+            <TextField label='계정' type='email' {...register('username')} />
+            <TextField label='비밀번호' type='password' {...register('password')} />
+            <Button fullWidth variant='contained' type='submit' size='large'>
+              로그인
+            </Button>
+          </Stack>
+        </Paper>
       </Stack>
     </>
   );
