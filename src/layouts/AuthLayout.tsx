@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import React from 'react';
 import { Outlet } from 'react-router-dom';
 import client from 'utils/client';
 

@@ -1,5 +1,5 @@
 import { ThemeProvider, createTheme } from '@mui/material';
-import React, { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, useNavigate } from 'react-router-dom';
 

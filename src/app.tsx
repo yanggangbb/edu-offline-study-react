@@ -1,4 +1,3 @@
-import React from 'react';
 import loadable from '@loadable/component';
 import { Route, Routes } from 'react-router-dom';
 import AuthLayout from 'layouts/AuthLayout';
