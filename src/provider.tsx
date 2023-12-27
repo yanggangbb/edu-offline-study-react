@@ -13,7 +13,11 @@ const TanstackProvider = ({ children }: PropsWithChildren) => {
       defaultOptions: {
         queries: {
           throwOnError: (err) => {
-            if (err instanceof AxiosError && err.response?.status === 401 && err.response.data.code === 'token_invalid') {
+            if (
+              err instanceof AxiosError &&
+              err.response?.status === 401 &&
+              err.response.data.code === 'token_invalid'
+            ) {
               navigate('/');
               return false;
             }
