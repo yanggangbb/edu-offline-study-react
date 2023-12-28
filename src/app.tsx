@@ -13,6 +13,7 @@ const AuthLayout = loadable(() => import('layouts/AuthLayout'));
 const MainLayout = loadable(() => import('layouts/MainLayout'));
 
 const IndexPage = loadable(() => import('pages/index'));
+const JoinPage = loadable(() => import('pages/join'));
 
 const App = () => (
   <RouterProvider
@@ -21,7 +22,7 @@ const App = () => (
         <Route element={<Provider />}>
           <Route element={<MainLayout />} loader={MainLayout.load}>
             <Route path='/' element={<IndexPage />} loader={IndexPage.load} />
-            <Route path='/join' element={<>회원가입화면</>} />
+            <Route path='/join' element={<JoinPage />} loader={JoinPage.load} />
           </Route>
           ,
           <Route
