@@ -14,6 +14,7 @@ const MainLayout = loadable(() => import('layouts/MainLayout'));
 
 const IndexPage = loadable(() => import('pages/index'));
 const JoinPage = loadable(() => import('pages/join'));
+const N10419Page = loadable(() => import('pages/N10419'));
 const N10303Page = loadable(() => import('pages/N10303'));
 const N10404Page = loadable(() => import('pages/N10404'));
 const N10407Page = loadable(() => import('pages/N10407'));
@@ -39,6 +40,7 @@ const App = () => (
           >
             <Route path='/home' element={<>홈화면</>} />
             <Route path='/post' element={<>게시글화면</>} />
+            <Route path='/N10419' element={<N10419Page />} loader={N10419Page.load} />
             <Route path='/N10303' element={<N10303Page/>} loader={N10303Page.load}/>
             <Route path='/N10404' element={<N10404Page />} loader={N10404Page.load} />
             <Route path='/N10407' element={<N10407Page />} loader={N10407Page.load} />
