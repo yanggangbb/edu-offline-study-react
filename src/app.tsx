@@ -45,12 +45,12 @@ const App = () => (
           >
             <Route path='/home' element={<>홈화면</>} />
             <Route path='/post' element={<>게시글화면</>} />
-            <Route path='/N10308' element={<N10308Page/>} loader={N10308Page.load}/>
+            <Route path='/N10308' element={<N10308Page />} loader={N10308Page.load} />
             <Route path='/N10312' element={<N10312Page />} loader={N10312Page.load} />
-            <Route path='/n10405' element={<N10405Page/>} loader={N10405Page.load} />
+            <Route path='/n10405' element={<N10405Page />} loader={N10405Page.load} />
             <Route path='/N10306' element={<N10306Page />} loader={N10306Page.load} />
             <Route path='/N10419' element={<N10419Page />} loader={N10419Page.load} />
-            <Route path='/N10303' element={<N10303Page/>} loader={N10303Page.load}/>
+            <Route path='/N10303' element={<N10303Page />} loader={N10303Page.load} />
             <Route path='/N10404' element={<N10404Page />} loader={N10404Page.load} />
             <Route path='/N10407' element={<N10407Page />} loader={N10407Page.load} />
             <Route path='/N10406' element={<N10406Page />} loader={N10406Page.load} />
