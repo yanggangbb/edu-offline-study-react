@@ -14,10 +14,7 @@ const MainLayout = loadable(() => import('layouts/MainLayout'));
 
 const IndexPage = loadable(() => import('pages/index'));
 const JoinPage = loadable(() => import('pages/join'));
-<<<<<<< HEAD
 const N10405Page = loadable(() => import('pages/n10405'));
-=======
->>>>>>> fd434aa95da04f1e121f0a8962c0e771d9b98661
 
 const App = () => (
   <RouterProvider

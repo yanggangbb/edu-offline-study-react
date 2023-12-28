@@ -136,8 +136,6 @@ const AuthLayout = () => {
                 </ListItem>
               )}
             </NavLink>
-          </List>
-          <List>
             <NavLink to='/N10405'>
               {({ isActive }) => (
                 <ListItem disablePadding>
