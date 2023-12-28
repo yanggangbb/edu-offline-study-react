@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const N10308 = () => {
   const [color, setColor] = useState<string>("black");
-  const colors = ["black", "aqua", "red", "purple", "blue"]
+  const colors = ["black", "aqua", "red", "purple", "blue", "green", "yellow", "skyblue", "beige", "gray"]
 
   useEffect(() => {
     setInterval(() => {
