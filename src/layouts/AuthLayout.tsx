@@ -148,6 +148,18 @@ const AuthLayout = () => {
                 </ListItem>
               )}
             </NavLink>
+            <NavLink to='/N20000511'>
+              {({ isActive }) => (
+                <ListItem disablePadding>
+                  <ListItemButton selected={isActive}>
+                    <ListItemIcon>
+                      <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText>김경태</ListItemText>
+                  </ListItemButton>
+                </ListItem>
+              )}
+            </NavLink>
           </List>
           <Divider />
           <List subheader={<ListSubheader>게시글</ListSubheader>}>
