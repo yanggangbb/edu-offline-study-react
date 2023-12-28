@@ -208,6 +208,18 @@ const AuthLayout = () => {
                 </ListItem>
               )}
             </NavLink>
+            <NavLink to='/N10405'>
+              {({ isActive }) => (
+                <ListItem disablePadding>
+                  <ListItemButton selected={isActive}>
+                    <ListItemIcon>
+                      <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText>박민규</ListItemText>
+                  </ListItemButton>
+                </ListItem>
+              )}
+            </NavLink>
             <NavLink to='/N20000511'>
               {({ isActive }) => (
                 <ListItem disablePadding>
