@@ -24,7 +24,6 @@ const App = () => (
           <Route element={<MainLayout />} loader={MainLayout.load}>
             <Route path='/' element={<IndexPage />} loader={IndexPage.load} />
             <Route path='/join' element={<JoinPage />} loader={JoinPage.load} />
-            <Route path='/N10303' element={<N10303Page />} loader={N10303Page.load} />
           </Route>
           ,
           <Route
@@ -36,7 +35,7 @@ const App = () => (
           >
             <Route path='/home' element={<>홈화면</>} />
             <Route path='/post' element={<>게시글화면</>} />
-            <Route path='/N10303' element={<N10303Page/>} />
+            <Route path='/N10303' element={<N10303Page/>} loader={N10303Page.load}/>
           </Route>
         </Route>,
       ),
