@@ -14,6 +14,7 @@ const MainLayout = loadable(() => import('layouts/MainLayout'));
 
 const IndexPage = loadable(() => import('pages/index'));
 const JoinPage = loadable(() => import('pages/join'));
+const N10404Page = loadable(() => import('pages/N10404'));
 
 const App = () => (
   <RouterProvider
@@ -34,6 +35,7 @@ const App = () => (
           >
             <Route path='/home' element={<>홈화면</>} />
             <Route path='/post' element={<>게시글화면</>} />
+            <Route path='/N10404' element={<N10404Page />} loader={N10404Page.load} />
           </Route>
         </Route>,
       ),
